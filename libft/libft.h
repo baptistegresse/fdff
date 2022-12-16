@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gresse <gresse@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bgresse <bgresse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 10:10:39 by bgresse           #+#    #+#             */
-/*   Updated: 2022/12/15 23:56:08 by gresse           ###   ########.fr       */
+/*   Updated: 2022/12/16 17:16:21 by bgresse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <unistd.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 666
+#  define BUFFER_SIZE 128
 # endif
 
 typedef struct s_list
@@ -68,6 +68,7 @@ char		*ft_itoa(int n);
 char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 
 char		**ft_split(char const *s, char c);
+int			ft_wordcount(char const *s, char c);
 
 t_list		*ft_lstnew(void *content);
 t_list		*ft_lstlast(t_list *lst);
@@ -84,10 +85,10 @@ int			ft_lstsize(t_list *lst);
 /*			get_next_line			*/
 
 char	*get_next_line(int fd);
-char	*read_file(char *rest, int fd);
 
 char	*rest_join_buffer(char *rest, char *buffer);
 int		is_newline(char *rest, char newline);
+size_t	ftstrlen(char *string);
 
 char	*get_before_newline_character(char *rest);
 char	*get_after_newline_character(char *rest);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gresse <gresse@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bgresse <bgresse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 11:35:35 by bgresse           #+#    #+#             */
-/*   Updated: 2022/12/16 00:00:20 by gresse           ###   ########.fr       */
+/*   Updated: 2022/12/16 17:00:09 by bgresse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*get_after_newline_character(char *rest)
 		return (free(rest), rest = NULL, NULL);
 	if (rest[index_rest] == '\n')
 		index_rest++;
-	after_line = malloc(sizeof(char) * (ft_strlen(rest) - index_rest + 1));
+	after_line = malloc(sizeof(char) * (ftstrlen(rest) - index_rest + 1));
 	if (!after_line)
 		return (free(rest), rest = NULL, NULL);
 	index_line = 0;
@@ -75,6 +75,18 @@ int	is_newline(char *rest, char newline)
 	return (0);
 }
 
+size_t	ftstrlen(char *string)
+{
+	size_t	index;
+
+	index = 0;
+	if (!string)
+		return (0);
+	while (string[index])
+		index++;
+	return (index);
+}
+
 char	*rest_join_buffer(char *rest, char *buffer)
 {
 	char	*result;
@@ -90,7 +102,7 @@ char	*rest_join_buffer(char *rest, char *buffer)
 	}
 	if (!rest || !buffer)
 		return (NULL);
-	result = malloc(sizeof(char) * (ft_strlen(rest) + ft_strlen(buffer) + 1));
+	result = malloc(sizeof(char) * (ftstrlen(rest) + ftstrlen(buffer) + 1));
 	if (!result)
 		return (NULL);
 	index_result = 0;

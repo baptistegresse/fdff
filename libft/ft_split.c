@@ -6,7 +6,7 @@
 /*   By: bgresse <bgresse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 10:12:17 by bgresse           #+#    #+#             */
-/*   Updated: 2022/11/23 10:23:52 by bgresse          ###   ########.fr       */
+/*   Updated: 2022/12/16 14:41:12 by bgresse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	clear(char **strings, int a)
 	return (0);
 }
 
-static int	ft_wordcount(char const *s, char c)
+int	ft_wordcount(char const *s, char c)
 {
 	int	wordcount;
 	int	i;
@@ -36,6 +36,8 @@ static int	ft_wordcount(char const *s, char c)
 	i = 0;
 	while (s[i])
 	{
+		if (s[i + 1] == 0)
+			break ;
 		if (s[i] == c)
 			while (s[i] == c)
 				i++;

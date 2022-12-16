@@ -1,20 +1,18 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile2                                          :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: zrebhi <zrebhi@student.42.fr>              +#+  +:+       +#+         #
+#    By: bgresse <bgresse@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/15 16:12:31 by zrebhi            #+#    #+#              #
-#    Updated: 2022/12/15 16:12:34 by zrebhi           ###   ########.fr        #
+#    Updated: 2022/12/16 17:33:19 by bgresse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 .PHONY:		all clean fclean re
 
-UNAME_S := $(shell uname -s)
-
-SRCS		= main.c
+SRCS		= main.c ./sources/read_file.c
 
 OBJS		= ${SRCS:.c=.o}
 
@@ -33,19 +31,11 @@ RM			= rm -f
 
 CFLAGS		= -Wall -Wextra -Werror #-fsanitize=address -g -O3 -march=native -ffast-math
 
-ifeq ($(UNAME_S), Darwin)
-	MLX_DIR		= mlx/
+MLX_DIR		= mlx/
 
-	MLX_FLAGS	= -Lmlx -lmlx -framework OpenGL -framework AppKit
+MLX_FLAGS	= -Lmlx -lmlx -framework OpenGL -framework AppKit
 
-	MLX_CCFLAGS	= -Imlx
-else
-	MLX_DIR		= mlx_linux/
-
-	MLX_FLAGS	= -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
-
-	MLX_CCFLAGS	= -I/usr/include -Imlx_linux -O3
-endif
+MLX_CCFLAGS	= -Imlx
 
 %.o		:	%.c Makefile ${HEADERS} libft/*.h libft/*.c libft/Makefile 
 			${CC} ${CFLAGS} ${MLX_CCFLAGS} -c $< -o ${<:.c=.o}
